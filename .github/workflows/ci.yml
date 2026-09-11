@@ -28,6 +28,7 @@ jobs:
         run: pytest -q --cov=nestweaver --cov-report=term-missing
       - name: Demo GIFs regenerate check
         run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           python scripts/generate_demo_gifs.py
           test -f docs/media/demo-navigate.gif
           test -f docs/media/demo-pick-bottle.gif

@@ -15,7 +15,7 @@ Thanks for helping build a privacy-first home companion robot.
 - Prefer small, focused PRs.  
 - Real safety behavior changes need tests in `tests/test_safety.py`.  
 - Do not commit secrets, private keys, or proprietary HEF weights you lack rights to redistribute.  
-- Demo GIFs must remain clearly labeled as simulated visualizations.  
+- Demo GIFs must remain clearly labeled as AI-generated photorealistic product visualizations (not live unit footage).  
 - Hardware docs should include voltages/currents when known.
 
 ## Code style
