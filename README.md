@@ -26,7 +26,7 @@ It is intentionally **buildable tomorrow**: Python SDK for laptop sim, ROS 2 pac
 
 ## Product demo visualizations (AI photoreal)
 
-> These GIFs are **AI-generated photorealistic product visualizations** assembled by `scripts/generate_demo_gifs.py` from keyframes under `docs/media/frames/`. They depict the NestWeaver form factor in a real home setting — they are **not** live captures of a shipped unit. Replace with your own field recordings when you have hardware.
+> These GIFs are **AI-generated photorealistic product visualizations** with continuous ~5s motion (image-to-video and/or optical-flow synthesis via `scripts/generate_demo_gifs.py`). They depict the NestWeaver form factor in a real home setting — they are **not** live captures of a shipped unit. Replace with your own field recordings when you have hardware.
 
 ### 1. Navigating a living room (obstacle-aware path)
 

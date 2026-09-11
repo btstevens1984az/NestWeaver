@@ -23,6 +23,7 @@ MANIFEST
 
 # Virtual environments
 .venv/
+.venv-*/
 venv/
 ENV/
 env/
@@ -70,9 +71,16 @@ docs/cad/stl/*.stl
 
 # Logs and temp
 *.log
+logs/
 tmp/
 temp/
 .cache/
+docs/media/_preview/
+docs/media/video_raw/*_flow.mp4
+docs/media/video_raw/*_smooth.mp4
+docs/media/video_raw/*_5s.mp4
+docs/media/video_raw/demo-*.mp4
+docs/media/video_raw/navigate_ad.mp4
 
 # Docker
 docker-data/
