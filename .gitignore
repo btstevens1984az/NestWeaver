@@ -1,0 +1,81 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+coverage.xml
+*.cover
+
+# ROS 2
+install/
+log/
+build/
+*.pcd
+*.bag
+*.mcap
+
+# Secrets / local overrides (never commit)
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+*.key
+id_rsa*
+credentials.json
+service-account*.json
+
+# CAD exports (keep README; ignore large binaries unless tracked intentionally)
+docs/cad/stl/*.stl
+!docs/cad/stl/README.md
+
+# Logs and temp
+*.log
+tmp/
+temp/
+.cache/
+
+# Docker
+docker-data/
+
+# OS
+Thumbs.db

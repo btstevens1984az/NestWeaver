@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nestweaver"
+version = "0.1.0"
+description = "Privacy-first modular home companion robot — tidy, fetch, and local LLM on wheels"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+authors = [{ name = "NestWeaver Contributors" }]
+keywords = ["robotics", "ros2", "home-robot", "privacy", "ollama", "hailo"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "PyYAML>=6.0",
+  "httpx>=0.27",
+  "rich>=13.0",
+  "click>=8.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "pytest-cov>=4.1",
+  "ruff>=0.4",
+  "mypy>=1.8",
+]
+sim = [
+  "Pillow>=10.0",
+]
+hailo = [
+  # HailoRT Python bindings are installed from Hailo SDK packages on-device.
+]
+voice = [
+  "sounddevice>=0.4",
+]
+
+[project.scripts]
+nestweaver = "nestweaver.cli.main:cli"
+
+[project.urls]
+Homepage = "https://github.com/btstevens1984az/NestWeaver"
+Documentation = "https://github.com/btstevens1984az/NestWeaver/tree/main/docs"
+Issues = "https://github.com/btstevens1984az/NestWeaver/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+nestweaver = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

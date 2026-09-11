@@ -1,0 +1,31 @@
+name: nestweaver_alpha
+platform: raspberry_pi_5
+hailo:
+  enabled: true
+  device: pcie
+  model_hef: models/tidy_detect.hef
+base:
+  type: mecanum
+  wheel_radius_m: 0.05
+  track_width_m: 0.30
+  wheelbase_m: 0.28
+  max_linear_speed_mps: 0.55
+  max_angular_speed_rps: 1.0
+arm:
+  type: so_arm_like
+  dof: 6
+  link_lengths_m: [0.05, 0.22, 0.20, 0.08, 0.08, 0.06]
+  gripper: parallel
+camera:
+  type: realsense_d435i
+  width: 640
+  height: 480
+  fps: 30
+voice:
+  mic: usb_array
+  speaker: 5w_mono
+llm:
+  provider: ollama
+  base_url: http://127.0.0.1:11434
+  model: llama3.2:3b
+safety_profile: configs/safety/default.yaml

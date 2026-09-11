@@ -1,0 +1,36 @@
+# NestWeaver CI
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev,sim]"
+      - name: Lint
+        run: ruff check src tests scripts
+      - name: Tests
+        run: pytest -q --cov=nestweaver --cov-report=term-missing
+      - name: Demo GIFs regenerate check
+        run: |
+          python scripts/generate_demo_gifs.py
+          test -f docs/media/demo-navigate.gif
+          test -f docs/media/demo-pick-bottle.gif
+          test -f docs/media/demo-deliver.gif
+          test -f docs/media/demo-voice-llm.gif
+          test -f docs/media/demo-tidy.gif

@@ -1,0 +1,23 @@
+soft_limits:
+  x_min: -2.0
+  x_max: 2.0
+  y_min: -2.0
+  y_max: 2.0
+  z_min: 0.05
+  z_max: 1.2
+  max_linear_speed_mps: 0.6
+  max_angular_speed_rps: 1.2
+  max_joint_speed_rps: 1.5
+  torque_limit_nm: 8.0
+battery:
+  warn_fraction: 0.25
+  cutoff_fraction: 0.12
+  critical_fraction: 0.08
+watchdogs:
+  heartbeat_timeout_s: 0.5
+  perception_timeout_s: 1.0
+  control_timeout_s: 0.25
+behaviors:
+  reduce_speed_near_humans: true
+  block_arm_near_child_pet: true
+  require_ack_after_estop: true

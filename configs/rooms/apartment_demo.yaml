@@ -1,0 +1,16 @@
+name: apartment_demo
+frame_id: map
+waypoints:
+  living_room: { x: 1.2, y: 0.4, yaw: 0.0 }
+  coffee_table: { x: 0.8, y: 0.1, yaw: 0.0 }
+  kitchen: { x: 2.5, y: -0.5, yaw: 1.57 }
+  toy_shelf: { x: -0.5, y: 1.0, yaw: 1.57 }
+  charging_dock: { x: 0.0, y: 0.0, yaw: 0.0 }
+geofence_polygon_m:
+  - [ -1.0, -1.5 ]
+  - [  3.5, -1.5 ]
+  - [  3.5,  2.5 ]
+  - [ -1.0,  2.5 ]
+no_go_zones:
+  - name: stairs
+    polygon: [[2.8, -1.5], [3.5, -1.5], [3.5, -0.8], [2.8, -0.8]]
