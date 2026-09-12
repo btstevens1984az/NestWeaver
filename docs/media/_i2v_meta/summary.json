@@ -1,0 +1,32 @@
+{
+  "navigate": {
+    "ok": true,
+    "kept": true,
+    "bytes": 296138,
+    "model": "SVD HF Space (prior)"
+  },
+  "pick": {
+    "ok": true,
+    "bytes": 346723,
+    "s": 59.7,
+    "model": "multimodalart/stable-video-diffusion (SVD img2vid)",
+    "seed_frame": "docs/media/frames/pick/03.png",
+    "motion_bucket_id": 200,
+    "fps_id": 5
+  },
+  "deliver": {
+    "ok": false,
+    "err": "AppError: You have exceeded your ZeroGPU quota (180s requested vs. 124s left). Try again in 23:59:00. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+    "s": 2.7
+  },
+  "voice": {
+    "ok": false,
+    "err": "AppError: You have exceeded your ZeroGPU quota (180s requested vs. 124s left). Try again in 23:58:55. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+    "s": 2.6
+  },
+  "tidy": {
+    "ok": false,
+    "err": "AppError: You have exceeded your ZeroGPU quota (180s requested vs. 124s left). Try again in 23:58:50. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+    "s": 2.8
+  }
+}

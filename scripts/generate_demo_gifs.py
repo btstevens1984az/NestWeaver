@@ -1,28 +1,13 @@
 #!/usr/bin/env python3
-"""Assemble NestWeaver README demo GIFs with continuous motion (not slideshows).
+"""LEGACY wrapper — prefer ``scripts/generate_demo_videos.py``.
 
-Motion sources (preferred order)
---------------------------------
-1. **Image-to-video** — Stable Video Diffusion (Hugging Face Space or local
-   ``.venv-i2v311``). True generative frame-to-frame motion from a photoreal seed.
-2. **Parallax flow synth** — continuous optical-flow warping of a photoreal seed
-   (locomotion parallax + optional arm-reach flow + teal LED pulse). Not a
-   keyframe crossfade.
-3. **Optical-flow MCI** between progressive keyframes under
-   ``docs/media/frames/<scene>/`` (Farneback warp, not alpha blend).
+This script can still encode GIFs from generative I2V MP4s under
+``docs/media/video_raw/``. Optical-flow / parallax still-warps are **not** used
+by default and must not be shipped as README demos.
 
-Encoding: ffmpeg palette GIF ~5s @ 16fps, 720×404.
+For the real I2V pipeline (SVD / Wan / local) + MP4+GIF outputs, run::
 
-Examples::
-
-    # Encode existing I2V MP4s when present, else flow synth:
-    .venv/bin/python scripts/generate_demo_gifs.py --method auto
-
-    # Force continuous parallax-flow synthesis from seeds:
-    .venv/bin/python scripts/generate_demo_gifs.py --method flow
-
-    # Local SVD (slow on CPU; needs .venv-i2v311):
-    .venv-i2v311/bin/python scripts/generate_demo_gifs.py --method svd-local --only pick
+    .venv/bin/python scripts/generate_demo_videos.py --backend auto
 """
 
 from __future__ import annotations
@@ -394,19 +379,13 @@ def build_scene(scene: str, method: str) -> dict:
         run_svd_hf_space(seed, mp4)
         encode_gif_from_mp4(mp4, dest)
         used = "svd-hf"
-    elif method == "flow":
-        frames = synthesize_flow(scene)
-        encode_gif_frames(frames, dest)
-        used = "parallax-flow"
-    elif method == "of":
-        frames = synthesize_of_keys(scene)
-        encode_gif_frames(frames, dest)
-        used = "optical-flow-keys"
+    elif method in ("flow", "of"):
+        raise SystemExit(
+            f"method={method} is hard-disabled (still-warp demos must not ship). "
+            "Use scripts/generate_demo_videos.py for true I2V."
+        )
     elif method == "auto":
         if mp4.exists() and mp4.stat().st_size > 20_000:
-            # Prefer true I2V when file looks like SVD (navigate) — detect via
-            # higher bitrate / prior naming; encode with minterpolate.
-            # Flow mp4s are tiny (~150KB); SVD navigate ~289KB+. Still encode both.
             encode_gif_from_mp4(mp4, dest)
             used = f"mp4:{mp4.name}"
         else:
@@ -415,10 +394,11 @@ def build_scene(scene: str, method: str) -> dict:
                 encode_gif_from_mp4(mp4, dest)
                 used = "svd-hf"
             except Exception as exc:
-                print(f"  HF I2V unavailable ({exc}); using parallax-flow", flush=True)
-                frames = synthesize_flow(scene)
-                encode_gif_frames(frames, dest)
-                used = "parallax-flow-fallback"
+                raise SystemExit(
+                    f"HF I2V unavailable ({exc}). Warp fallback is disabled. "
+                    "Set HF_TOKEN / use Wan Space / run --method svd-local, "
+                    "or prefer scripts/generate_demo_videos.py."
+                ) from exc
     else:
         raise SystemExit(f"Unknown method {method}")
 

@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "model": "multimodalart/stable-video-diffusion (SVD img2vid, HF Space)",
+  "seed_frame": "docs/media/frames/navigate/02.png",
+  "raw": "docs/media/video_raw/navigate.mp4"
+}

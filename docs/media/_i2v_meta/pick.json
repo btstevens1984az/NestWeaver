@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "model": "multimodalart/stable-video-diffusion (SVD img2vid, HF Space)",
+  "seed_frame": "docs/media/frames/pick/03.png",
+  "raw": "docs/media/video_raw/pick.mp4",
+  "motion_bucket_id": 200
+}

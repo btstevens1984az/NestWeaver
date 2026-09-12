@@ -1,0 +1,19 @@
+{
+  "deliver": {
+    "ok": true,
+    "bytes": 299269,
+    "model": "Upsampler/wan-2-2-14b-image-to-video",
+    "s": 41.7,
+    "prompt": "NestWeaver home robot driving across living room and handing water bottle to person on sofa, continuous motion"
+  },
+  "voice": {
+    "ok": false,
+    "err": "You have exceeded your ZeroGPU quota (180s requested vs. 87s left). Try again in 23:48:16. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+    "tried": "seawolf2357/img2vid"
+  },
+  "tidy": {
+    "ok": false,
+    "err": "You have exceeded your ZeroGPU quota (180s requested vs. 87s left). Try again in 23:48:14. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens",
+    "tried": "seawolf2357/img2vid"
+  }
+}

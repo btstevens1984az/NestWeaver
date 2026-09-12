@@ -1,39 +1,40 @@
-# Demo media captions
+# Demo media — AI short videos
 
-All GIFs are **AI-generated photorealistic product visualizations** — not live
-robot camera footage of a shipped unit. They are produced for continuous ~5s
-motion (not still-photo slideshows / crossfades).
+All demos are **generative image-to-video** (~5s product clips), not optical-flow
+warps of stills and not crossfade slideshows.
 
-## Motion pipeline
+## Pipeline
 
-`scripts/generate_demo_gifs.py` supports:
+`scripts/generate_demo_videos.py` is the source of truth:
 
-| Method | What it does |
-|--------|----------------|
-| `svd-hf` / existing I2V MP4 | Stable Video Diffusion image-to-video, then ffmpeg `minterpolate` → GIF |
-| `flow` (default fallback) | Continuous parallax optical-flow warping of a photoreal seed (locomotion + arm-reach flow) |
-| `of` | Farneback warp between progressive keyframes (not alpha crossfade) |
+| Backend | What it does |
+|---------|----------------|
+| `svd-hf` | Stable Video Diffusion via Hugging Face Space |
+| `wan-hf` | Wan 2.2 I2V via Hugging Face Space |
+| `svd-local` | Local SVD (`stabilityai/stable-video-diffusion-img2vid`) on CPU |
+| `encode` | Re-encode existing generative MP4s → README MP4 + GIF |
 
-Regenerate:
+Optical-flow / parallax still-warps are **hard-disabled** (do not ship).
 
 ```bash
-# Prefer existing I2V MP4s under video_raw/, else HF SVD, else flow synth
-.venv/bin/python scripts/generate_demo_gifs.py --method auto
-
-# Force continuous parallax-flow synthesis
-.venv/bin/python scripts/generate_demo_gifs.py --method flow
+.venv/bin/python scripts/generate_demo_videos.py --backend auto
+.venv/bin/python scripts/generate_demo_videos.py --backend encode
 ```
+
+Legacy `scripts/generate_demo_gifs.py` may still exist for historical OF experiments;
+prefer `generate_demo_videos.py`.
 
 ## Files
 
-| File | Scene | Typical motion source |
-|------|--------|------------------------|
-| `demo-navigate.gif` | Omnibase navigating a living room | SVD I2V (HF Space) |
-| `demo-pick-bottle.gif` | Arm picking a clear water bottle | Continuous flow synth (I2V when quota/API available) |
-| `demo-deliver.gif` | Fetch-and-carry delivery | Continuous flow synth |
-| `demo-voice-llm.gif` | Voice / LED while rolling | Continuous flow synth |
-| `demo-tidy.gif` | Tidying clutter into a basket | Continuous flow synth |
+| Stem | Scene | Typical generator |
+|------|--------|-------------------|
+| `demo-navigate` | Driving through living room | SVD (HF Space) |
+| `demo-pick-bottle` | Pick water bottle | SVD (HF Space) |
+| `demo-deliver` | Deliver / handoff | Wan 2.2 I2V (HF Space) |
+| `demo-voice-llm` | Voice / LED while rolling | Wan 2.2 I2V (HF Space) |
+| `demo-tidy` | Tidy clutter into basket | SVD / Wan (see `_i2v_meta/`) |
 
-Optional MP4 intermediates: `video_raw/<scene>.mp4`  
-Keyframes / seeds: `frames/{navigate,pick,deliver,voice,tidy}/`  
-Robot design lock: `frames/_ref/nestweaver-robot-ref.png`
+Committed outputs per stem: `docs/media/<stem>.mp4` + `docs/media/<stem>.gif`  
+Raw generative sources: `docs/media/video_raw/<scene>.mp4`  
+Seeds: `frames/{navigate,pick,deliver,voice,tidy}/`  
+Per-clip provenance: `_i2v_meta/<scene>.json`

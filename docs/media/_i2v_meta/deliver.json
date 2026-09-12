@@ -1,0 +1,6 @@
+{
+  "ok": true,
+  "model": "Upsampler/wan-2-2-14b-image-to-video",
+  "seed_frame": "docs/media/frames/deliver/03.png",
+  "raw": "docs/media/video_raw/deliver.mp4"
+}

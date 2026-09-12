@@ -24,44 +24,56 @@ It is intentionally **buildable tomorrow**: Python SDK for laptop sim, ROS 2 pac
 
 ---
 
-## Product demo visualizations (AI photoreal)
+## Product demos — AI short videos (~5s)
 
-> These GIFs are **AI-generated photorealistic product visualizations** with continuous ~5s motion (image-to-video and/or optical-flow synthesis via `scripts/generate_demo_gifs.py`). They depict the NestWeaver form factor in a real home setting — they are **not** live captures of a shipped unit. Replace with your own field recordings when you have hardware.
+> These are **AI-generated short product videos** of NestWeaver in action (image-to-video), not live captures of a shipped unit and **not** still-photo warps. Source of truth is H.264 MP4; GIFs are encoded from those video frames for GitHub README fallback.
 
-### 1. Navigating a living room (obstacle-aware path)
+### 1. Navigating a living room
 
-![Navigating living room — AI photoreal product viz](docs/media/demo-navigate.gif)
+<video src="docs/media/demo-navigate.mp4" controls muted loop playsinline width="720"></video>
 
-*Omnidirectional base tracing a path around furniture in a home interior (AI photoreal visualization).*
+![Navigating living room — AI short video (GIF fallback)](docs/media/demo-navigate.gif)
+
+*Omnidirectional base driving through a living room (AI I2V demo).*
 
 ### 2. Picking up a water bottle
 
-![Picking water bottle — AI photoreal product viz](docs/media/demo-pick-bottle.gif)
+<video src="docs/media/demo-pick-bottle.mp4" controls muted loop playsinline width="720"></video>
 
-*6-DoF arm grasp sequence on a clear water bottle at a side table (AI photoreal visualization).*
+![Picking water bottle — AI short video (GIF fallback)](docs/media/demo-pick-bottle.gif)
 
-### 3. Delivering the bottle
+*Arm reaching and grasping a clear water bottle (AI I2V demo).*
 
-![Delivering bottle — AI photoreal product viz](docs/media/demo-deliver.gif)
+### 3. Delivering / handing off an item
 
-*Fetch-and-carry handover to a person / table (AI photoreal visualization).*
+<video src="docs/media/demo-deliver.mp4" controls muted loop playsinline width="720"></video>
 
-### 4. Voice query while moving (local LLM / Ollama)
+![Delivering bottle — AI short video (GIF fallback)](docs/media/demo-deliver.gif)
 
-![Voice LLM while moving — AI photoreal product viz](docs/media/demo-voice-llm.gif)
+*Fetch-and-carry delivery toward a person / table (AI I2V demo).*
 
-*On-device Ollama answering a spoken question while the base continues to navigate (AI photoreal visualization).*
+### 4. Voice / mobile LLM while moving
 
-### 5. Tidying / putting an item away
+<video src="docs/media/demo-voice-llm.mp4" controls muted loop playsinline width="720"></video>
 
-![Tidying item — AI photoreal product viz](docs/media/demo-tidy.gif)
+![Voice LLM while moving — AI short video (GIF fallback)](docs/media/demo-voice-llm.gif)
 
-*Clutter item picked from the floor and returned to a basket / shelf home (AI photoreal visualization).*
+*Local LLM interaction cues while the base keeps rolling (AI I2V demo).*
 
-Regenerate GIFs from committed keyframes:
+### 5. Tidying (pick clutter → put away)
+
+<video src="docs/media/demo-tidy.mp4" controls muted loop playsinline width="720"></video>
+
+![Tidying item — AI short video (GIF fallback)](docs/media/demo-tidy.gif)
+
+*Clutter picked up and returned to a basket / shelf home (AI I2V demo).*
+
+Regenerate (true I2V only — warp fallback disabled):
 
 ```bash
-.venv/bin/python scripts/generate_demo_gifs.py
+.venv/bin/python scripts/generate_demo_videos.py --backend auto
+# or encode existing generative MP4s under docs/media/video_raw/:
+.venv/bin/python scripts/generate_demo_videos.py --backend encode
 ```
 
 ---

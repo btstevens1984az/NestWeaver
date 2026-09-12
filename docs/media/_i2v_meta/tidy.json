@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "model": "stabilityai/stable-video-diffusion-img2vid (local CPU minimal)",
+  "seed_frame": "docs/media/frames/tidy/03.png",
+  "raw": "docs/media/video_raw/tidy.mp4",
+  "num_frames": 8,
+  "num_inference_steps": 6,
+  "size": "512x288",
+  "s": 1782.0
+}

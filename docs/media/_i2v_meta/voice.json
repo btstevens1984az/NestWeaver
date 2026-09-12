@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "model": "Upsampler/wan-2-2-14b-image-to-video",
+  "seed_frame": "docs/media/frames/voice/02.png",
+  "raw": "docs/media/video_raw/voice.mp4",
+  "duration_seconds": 2.5,
+  "steps": 4
+}

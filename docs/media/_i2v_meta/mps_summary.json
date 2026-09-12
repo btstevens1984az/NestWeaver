@@ -1,0 +1,14 @@
+{
+  "deliver": {
+    "ok": false,
+    "err": "Conv3D is not supported on MPS"
+  },
+  "voice": {
+    "ok": false,
+    "err": "\"LayerNormKernelImpl\" not implemented for 'Half'"
+  },
+  "tidy": {
+    "ok": false,
+    "err": "\"LayerNormKernelImpl\" not implemented for 'Half'"
+  }
+}
